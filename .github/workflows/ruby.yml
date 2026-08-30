@@ -40,6 +40,9 @@ jobs:
       matrix:
         ruby-version: ['3.2', '3.3', '3.4']
         gemfile: [rails_7_1, rails_7_2, rails_8_0, rails_8_1, rails_main]
+        exclude:
+          - ruby-version: '3.2'
+            gemfile: rails_main
     services:
       redis:
         image: redis:4.0-alpine
@@ -58,5 +61,3 @@ jobs:
         run: bin/rails test
       - name: Run system tests
         run: bin/rails app:test:system
-
-
